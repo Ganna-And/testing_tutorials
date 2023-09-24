@@ -1,4 +1,4 @@
-import {getByRole, render, screen} from '@testing-library/react'
+import { getByDisplayValue, render, screen} from '@testing-library/react'
 import Application from "./application";
 
 describe('application', ()=>{
@@ -25,6 +25,12 @@ describe('application', ()=>{
         
 const nameElement3 = screen.getByPlaceholderText('Fullname');
 expect(nameElement3).toBeInTheDocument()
+
+const nameElement4 = screen.getByDisplayValue('Ganna');
+expect(nameElement4).toBeInTheDocument();
+
+const imgElement = screen.getByAltText('a person with a laptop')
+expect(imgElement).toBeInTheDocument()
 
         const nameElement2 = screen.getByLabelText('Name',{
             selector:'input'
