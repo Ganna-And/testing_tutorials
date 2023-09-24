@@ -22,6 +22,12 @@ describe('application', ()=>{
         const nameElement = screen.getByRole('textbox', {
             name: 'Name',
         });
+
+        const cloeseElement = screen.getByTitle('close');
+        expect(cloeseElement).toBeInTheDocument()
+
+        const customElemet = screen.getByTestId('custom-element');
+        expect(customElemet).toBeInTheDocument()
         
 const nameElement3 = screen.getByPlaceholderText('Fullname');
 expect(nameElement3).toBeInTheDocument()
