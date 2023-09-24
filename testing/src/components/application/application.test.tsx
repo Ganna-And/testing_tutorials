@@ -19,6 +19,15 @@ describe('application', ()=>{
         const nameElement = screen.getByRole('textbox', {
             name: 'Name',
         });
+
+        const nameElement2 = screen.getByLabelText('Name',{
+            selector:'input'
+        });
+        expect(nameElement2).toBeInTheDocument();
+
+        const termsElement2 = screen.getByLabelText('I accept the terms and conditions');
+        expect(termsElement2).toBeInTheDocument()
+
         expect(nameElement).toBeInTheDocument();
 
         const bioElement = screen.getByRole('textbox',{
