@@ -15,15 +15,22 @@ describe('application', ()=>{
         expect(sectionHeading).toBeInTheDocument();
 
 
+        const paragraphElement = screen.getByText('All fields are mendatory');
+        expect(paragraphElement).toBeInTheDocument();
+
         expect(pageHeading).toBeInTheDocument();
         const nameElement = screen.getByRole('textbox', {
             name: 'Name',
         });
+        
+const nameElement3 = screen.getByPlaceholderText('Fullname');
+expect(nameElement3).toBeInTheDocument()
 
         const nameElement2 = screen.getByLabelText('Name',{
             selector:'input'
         });
         expect(nameElement2).toBeInTheDocument();
+
 
         const termsElement2 = screen.getByLabelText('I accept the terms and conditions');
         expect(termsElement2).toBeInTheDocument()

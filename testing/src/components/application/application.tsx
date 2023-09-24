@@ -5,17 +5,18 @@ export default function Application() {
     <>
     <h1>Job application form</h1>
     <h2>Section 1</h2>
+    <p>All fields are mendatory</p>
     <form>
         <div>
     <label htmlFor="name">Name</label>
-    <input type="text" id="name" name="name" required />
+    <input type="text" id="name" name="name" placeholder="Fullname" required />
 </div>
 <div>
     <div>
         <label htmlFor="bio">Bio</label>
         <textarea id="bio" name="bio" />
     </div>
-    <label htmlFor="country">Name</label>
+    <label htmlFor="country">Select country:</label>
     <select id="country" name="country" required>
         <option value="">Select a country</option>
         <option value="US">USA</option>
