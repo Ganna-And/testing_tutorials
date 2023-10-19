@@ -24,7 +24,9 @@ test('Renders initioal value 0',()=>{
 test('renders a count of 1 after clicking increment button',async ()=>{
     user.setup();
     render(<Counter />);
-    const countButton = screen.getByRole('button');
+    const countButton = screen.getByRole('button',{
+        name:'Increment'
+    });
 
     await user.click(countButton)
     const countElement = screen.getByRole('heading');
@@ -34,7 +36,9 @@ test('renders a count of 1 after clicking increment button',async ()=>{
 test('render a count of 2 after clickin counter btn twice', async()=>{
     user.setup();
     render(<Counter />);
-    const countButton = screen.getByRole('button');
+    const countButton = screen.getByRole('button',{
+        name:'Increment'
+    });
 
     await user.click(countButton)
     await user.click(countButton)
@@ -42,5 +46,40 @@ test('render a count of 2 after clickin counter btn twice', async()=>{
     expect(countElement).toHaveTextContent('2')
 })
 
+test('renders a count of 10 after clicking button" Set"', async ()=>{
+user.setup()
+render(<Counter/>);
+const amountInput = screen.getByRole('spinbutton');
+await user.type(amountInput, "10");
+
+expect(amountInput).toHaveValue(10);
+
+const buttonSet = screen.getByRole('button',{
+    name: 'Set'
+});
+
+await user.click(buttonSet);
+const countElement = screen.getByRole('heading');
+expect(countElement).toHaveTextContent("10")
 })
 
+test('elements are focused in the right order', async()=>{
+    user.setup();
+    render(<Counter />)
+    const amountInput = screen.getByRole('spinbutton');
+    const setButton = screen.getByRole('button',{ name:'Set'});
+    const incrementBtn = screen.getByRole('button',{ name:'Increment'});
+
+    await user.tab()
+    expect(incrementBtn).toHaveFocus();
+
+    await user.tab()
+    expect(amountInput).toHaveFocus();
+
+    await user.tab();
+    expect(setButton).toHaveFocus()
+})
+
+});
+
+ 
